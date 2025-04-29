@@ -113,8 +113,7 @@ describe('Pawn', () => {
             moves.should.deep.include.members([Square.at(4, 7), Square.at(5, 7)]);
         });
 
-<<<<<<< HEAD
-=======
+
         it('cannot move at the bottom of the board', () => {
             const pawn = new Pawn(Player.BLACK);
             board.setPiece(Square.at(0, 3), pawn);
