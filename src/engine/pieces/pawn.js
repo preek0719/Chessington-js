@@ -10,30 +10,91 @@ export default class Pawn extends Piece {
     getAvailableMoves(board) {
         let location = board.findPiece(this);
         let availableMoves = [];
-        console.log(location.row);
+      
+           
         if (this.player === Player.WHITE) {
-            if (location.row === 1) {
+            if (location.row === 7) {
+                return [];
+            }
+            else if(location.col == 0) {
+                let topDiagonalRightPiece = board.getPiece(Square.at(location.row + 1, location.col+1));
+                if (topDiagonalRightPiece != undefined && topDiagonalRightPiece.player === Player.BLACK) {
+                    availableMoves.push(Square.at(location.row + 1, location.col+1));
+                }
+            }
+            else if (location.col >0 && location.col <7) {
+                let topDiagonalLeftPiece = board.getPiece(Square.at(location.row + 1, location.col-1));                
+                let topDiagonalRightPiece = board.getPiece(Square.at(location.row + 1, location.col+1));
+                               
+                if (topDiagonalLeftPiece != undefined && topDiagonalLeftPiece.player === Player.BLACK && topDiagonalLeftPiece.constructor.name != 'King') {
+                    availableMoves.push(Square.at(location.row + 1, location.col-1));
+                }
+                else if(topDiagonalRightPiece != undefined && topDiagonalRightPiece.player === Player.BLACK) {
+                    availableMoves.push(Square.at(location.row + 1, location.col+1));
+                }            
+            }
+            else if (location.col=== 7) {
+                let topDiagonalLeftPiece = board.getPiece(Square.at(location.row + 1, location.col-1));
+                if (topDiagonalLeftPiece != undefined && topDiagonalLeftPiece.player === Player.BLACK) {
+                    availableMoves.push(Square.at(location.row + 1, location.col-1));
+                }
+            }                 
+            if (location.row === 1) {                         
                 availableMoves.push(Square.at(location.row + 1, location.col));
                 availableMoves.push(Square.at(location.row + 2, location.col));
-            } else if (location.row) {
-                availableMoves.push(Square.at(location.row + 1, location.col));
-            } 
-        } else {
-            let funcRet = board.getPiece(Square.at(location.row - 1, location.col));
-            if (funcRet != undefined) {
+            }          
+            else {             
+                   availableMoves.push(Square.at(location.row + 1, location.col));
+                }                    
+            }         
+    
+         
+            else {
+
+            if ((location.row === 0)) {
                 return [];
-            } else if (location.row === 6) {
+                 }
+            else if(location.col == 0) {
+                    let topDiagonalRightPiece = board.getPiece(Square.at(location.row - 1, location.col+1));
+                    if (topDiagonalRightPiece != undefined && topDiagonalRightPiece.player === Player.WHITE) {
+                        availableMoves.push(Square.at(location.row - 1, location.col+1));
+                    }
+                }  
+                else if (location.col >0 && location.col <7) {
+                    let topDiagonalLeftPiece = board.getPiece(Square.at(location.row - 1, location.col-1));                
+                    let topDiagonalRightPiece = board.getPiece(Square.at(location.row - 1, location.col+1));
+                                   
+                    if (topDiagonalLeftPiece != undefined && topDiagonalLeftPiece.player === Player.WHITE && topDiagonalLeftPiece.constructor.name != 'King') {
+                        availableMoves.push(Square.at(location.row - 1, location.col-1));
+                    }
+                    else if(topDiagonalRightPiece != undefined && topDiagonalRightPiece.player === Player.WHITE) {
+                        availableMoves.push(Square.at(location.row - 1, location.col+1));
+                    }            
+                } 
+                else if (location.col=== 7) {
+                    let topDiagonalLeftPiece = board.getPiece(Square.at(location.row - 1, location.col-1));
+                    if (topDiagonalLeftPiece != undefined && topDiagonalLeftPiece.player === Player.WHITE) {
+                        availableMoves.push(Square.at(location.row - 1, location.col-1));
+                    }
+                }    
+                 
+            let oneSquareAhead = board.getPiece(Square.at(location.row - 1, location.col));
+            if (oneSquareAhead != undefined) {
+                return [];
+            }
+            else if (location.row === 6) {
                 availableMoves.push(Square.at(location.row - 1, location.col));
                 availableMoves.push(Square.at(location.row - 2, location.col));
-                let twoSquare = board.getPiece(Square.at(location.row - 2, location.col));
-                if (twoSquare != undefined) {
+                let twoSquareAhead = board.getPiece(Square.at(location.row - 2, location.col));
+                if (twoSquareAhead != undefined) {
                     availableMoves.pop();
                 }
-            } else {
-                availableMoves.push(Square.at(location.row - 1, location.col));
             }
-        }
-        console.log(availableMoves);
+            else {
+                 availableMoves.push(Square.at(location.row - 1, location.col));
+                }
+                      
+        }       
         return availableMoves;
     }
 }
