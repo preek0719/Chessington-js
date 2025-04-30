@@ -2,8 +2,6 @@ import King from '../../../src/engine/pieces/king';
 
 describe('King', () => {
 
-<<<<<<< HEAD
-=======
     let board;
     beforeEach(() => board = new Board());
 
@@ -29,4 +27,4 @@ describe('King', () => {
 
         moves.should.have.length(8);
     });
-});
+})
