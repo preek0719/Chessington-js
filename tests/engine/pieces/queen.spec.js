@@ -64,4 +64,16 @@ describe('Queen', () => {
             moves.should.not.deep.include(Square.at(4, 6));
         });
 
+        it('cannot move through opposing  pieces', () => {
+            const queen = new Queen(Player.WHITE);
+            const pawn = new Pawn(Player.BLACK);
+            board.setPiece(Square.at(4, 4), queen);
+            board.setPiece(Square.at(4, 5), pawn);            
+    
+            const moves = queen.getAvailableMoves(board);
+    
+            moves.should.not.deep.include(Square.at(4, 6));
+        });
+
+
 });
