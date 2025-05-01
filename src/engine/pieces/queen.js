@@ -16,14 +16,23 @@ export default class Queen extends Piece {
                         queenAvailableMoves.push(Square.at(location.row, j));
                         queenAvailableMoves.push(Square.at(i, j))
                     }
+                    else if (board.getPiece(Square.at(i, j)).player == this.player) {
+                        break;
+                    }
                     else if (board.getPiece(Square.at(i, j)).player != this.player) {
                         queenAvailableMoves.push(Square.at(i, j));
                         break;
                        }}
+                else if (board.getPiece(Square.at(location.row, j)) != undefined && board.getPiece(Square.at(location.row, j)).player == this.player) {
+                    break;
+                    }    
                  else if (board.getPiece(Square.at(location.row, j)) != undefined && board.getPiece(Square.at(location.row, j)).player != this.player) {
                         queenAvailableMoves.push(Square.at(location.row, j));
                         break;
                     }}
+                    else if (( board.getPiece(Square.at(i, location.col))!= undefined && board.getPiece(Square.at(i, location.col)).player == this.player)) {
+                        break;
+                    }
                     else if ( board.getPiece(Square.at(i, location.col))!= undefined && board.getPiece(Square.at(i, location.col)).player != this.player) {
                         queenAvailableMoves.push(Square.at(i, location.col));
                         break;
@@ -37,14 +46,23 @@ export default class Queen extends Piece {
                         queenAvailableMoves.push(Square.at(location.row, j));
                         queenAvailableMoves.push(Square.at(i, j))
                     }
+                    else if (board.getPiece(Square.at(i, j)).player == this.player) {
+                        break;
+                    }
                     else if (board.getPiece(Square.at(i, j)).player != this.player) {
                         queenAvailableMoves.push(Square.at(i, j));
                         break;
                        }}
+                 else if (board.getPiece(Square.at(location.row, j)) != undefined && board.getPiece(Square.at(location.row, j)).player == this.player) {
+                    break;
+                       }      
                  else if (board.getPiece(Square.at(location.row, j)) != undefined && board.getPiece(Square.at(location.row, j)).player != this.player) {
                         queenAvailableMoves.push(Square.at(location.row, j));
                         break;
                     }}
+                    else if ( board.getPiece(Square.at(i, location.col))!= undefined && board.getPiece(Square.at(i, location.col)).player == this.player) {
+                        break;
+                    }
                     else if ( board.getPiece(Square.at(i, location.col))!= undefined && board.getPiece(Square.at(i, location.col)).player != this.player) {
                         queenAvailableMoves.push(Square.at(i, location.col));
                         break;
@@ -54,6 +72,9 @@ export default class Queen extends Piece {
             if (board.getPiece(Square.at(i, j)) == undefined) {
                 queenAvailableMoves.push(Square.at(i, j));
             }
+            else if (board.getPiece(Square.at(i, j)).player == this.player) {
+                break;
+            }
             else if (board.getPiece(Square.at(i, j)).player != this.player) {
                 queenAvailableMoves.push(Square.at(i, j));
                 break;
@@ -62,6 +83,9 @@ export default class Queen extends Piece {
         for (let i = location.row - 1, j = location.col + 1; i >= 0 && j <= 7; i--, j++) {
             if (board.getPiece(Square.at(i, j)) == undefined) {
                 queenAvailableMoves.push(Square.at(i, j));
+            }
+            else if (board.getPiece(Square.at(i, j)).player == this.player) {
+                break;
             }
             else if (board.getPiece(Square.at(i, j)).player != this.player) {
                 queenAvailableMoves.push(Square.at(i, j));
